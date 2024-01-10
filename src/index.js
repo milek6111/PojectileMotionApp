@@ -15,7 +15,6 @@ app.use(session({
     }
 }));
 
-// Ustawienie folderu publicznego
 app.use(express.static('public'));
 
 const PORT = process.env.PORT || 3000;

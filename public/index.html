@@ -22,7 +22,7 @@
             <aside>
                 <h3>Historia rzutów (dla zalogowanych użytkowników)</h3>
                 <ul id="history-list">
-                    <!-- Tutaj pojawią się wpisy historii -->
+                    <!-- rekordy -->
                 </ul>
             </aside>
         </div>
@@ -47,12 +47,13 @@
                     <button id="submit-button" title="Aby zapisać, musisz być zalogowany">Zapisz parametry</button>
                 </div>
                 <div id="chart-container">
-                    <!-- Miejsce na wykres -->
+                    <!-- wykres -->
                     <canvas id="trajectory-chart"></canvas>
                 </div>
 
                 <div id="max-height">Maksymalna wysokość: <span id="max-height-value"></span> m</div>
                 <div id="flight-time">Czas trwania lotu: <span id="flight-time-value"></span> s</div>
+                <div id="range">Zasięg: <span id="range-value"></span> m</div>
 
             
         </div>
@@ -65,7 +66,8 @@
                     <ul>
                         <li>Tor lotu: \( y = x \tan(\theta) - \frac{g}{2v^2\cos^2(\theta)}x^2 + h_0 \)</li>
                         <li>Maksymalna wysokość: \( H = h_0 + \frac{v^2 \sin^2(\theta)}{2g} \)</li>
-                        <li>Czas lotu: \( t = \frac{v \sin(\theta) + \sqrt{(v \sin(\theta))^2 + 2gh_0}}{g} \)</li>                    </ul>
+                        <li>Czas lotu: \( t = \frac{v \sin(\theta) + \sqrt{(v \sin(\theta))^2 + 2gh_0}}{g} \)</li>
+                        <li>Zasięg rzutu: <br/> \( R = v \cos(\theta)t \)</li>                </ul>
                     <p>gdzie:</p>
                     <ul>
                         <li>\( v \) - prędkość początkowa</li>
@@ -81,7 +83,6 @@
     </div>
 
 
-    <!-- Sekcja logowania -->
     <div id="login-section" class="form-section" style="display: none;">
         <form id="login-form" class="form-style">
             <h2>Logowanie</h2>
@@ -93,7 +94,7 @@
     </div>
 
 
-    <!-- Sekcja rejestracji -->
+
     <div id="register-section" class="form-section" style="display: none;">
         <form id="register-form" class="form-style">
             <h2>Rejestracja</h2>

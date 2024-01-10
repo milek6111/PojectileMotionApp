@@ -8,17 +8,17 @@ router.post('/register', async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        // Sprawdzenie, czy użytkownik już istnieje
+        
         const userExists = await pool.query('SELECT * FROM TI.users WHERE username = $1', [username]);
 
         if (userExists.rows.length > 0) {
             return res.status(400).json({ message: 'Nazwa użytkownika jest już zajęta.' });
         }
 
-        // Hashowanie hasła
+
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Zapis do bazy danych
+
         await pool.query('INSERT INTO TI.users (username, password) VALUES ($1, $2)', [username, hashedPassword]);
 
         res.status(201).json({ message: 'Użytkownik zarejestrowany.' });
@@ -34,13 +34,13 @@ router.post('/login', async (req, res) => {
     
 
     try {
-        // Pobieranie użytkownika z bazy danych
+        
         const result = await pool.query('SELECT * FROM TI.users WHERE username = $1', [username]);
 
         if (result.rows.length > 0) {
             const user = result.rows[0];
 
-            // Porównywanie hasła
+            
             if (await bcrypt.compare(password, user.password)) {
                 req.session.userId = user.id;
                 res.send('Zalogowano pomyślnie.');
@@ -58,7 +58,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/save-parameters', async (req, res) => {
     const { angle, velocity, height } = req.body;
-    const userId = req.session.userId; // Pobranie ID użytkownika z sesji
+    const userId = req.session.userId; 
 
     if (!userId) {
         return res.status(403).json({message: 'Nie jesteś zalogowany.'});

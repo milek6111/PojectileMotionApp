@@ -9,12 +9,9 @@ document.getElementById('login-link').addEventListener('click', function() {
 });
 
 document.getElementById('login-button').addEventListener('click', function() {
-    //TODO none
     document.getElementById('content').style.display = 'flex';
     document.getElementById('login-section').style.display = 'flex';
-    //TODO none
     document.getElementById('login-button').style.display = 'inline-block';
-    //TODO: NONE
     document.getElementById('back-button').style.display = 'none';
 });
 
@@ -37,10 +34,11 @@ function calculateProjectileMotion() {
     
     const maxHeight = h0 + (v * v * Math.sin(theta) * Math.sin(theta)) / (2 * g); // Maksymalna wysokość
     const flightTime = (v * Math.sin(theta) + Math.sqrt((v * Math.sin(theta)) * (v * Math.sin(theta)) + 2 * g * h0)) / g; // Czas trwania lotu
-
+    const range = v * Math.cos(theta) * flightTime;
     
     document.getElementById('max-height-value').textContent = maxHeight.toFixed(2);
     document.getElementById('flight-time-value').textContent = flightTime.toFixed(2);
+    document.getElementById('range-value').textContent = range.toFixed(2);
 }
 
 
@@ -153,7 +151,6 @@ document.getElementById('register-form').addEventListener('submit', async (event
     const username = document.getElementById('username-register').value.trim();
     const password = document.getElementById('password-register').value.trim();
 
-    // Sprawdzenie, czy pola są wypełnione
     if (!username || !password) {
         alert('Proszę wypełnić wszystkie pola.');
         return;
@@ -168,8 +165,7 @@ document.getElementById('register-form').addEventListener('submit', async (event
 
         if (response.ok) {
             console.log('Rejestracja zakończona sukcesem');
-            // Przekierowanie do strony głównej lub logowania
-            window.location.href = '/'; // Zmień na odpowiedni URL
+            window.location.href = '/';
         } else {
             const data = await response.json();
             alert(data.message || 'Błąd podczas rejestracji');
@@ -193,8 +189,7 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
 
         if (response.ok) {
             console.log('Zalogowano pomyślnie');
-            // Przekierowanie na stronę główną lub panel użytkownika
-            window.location.href = '/'; // Przekierowanie na stronę główną
+            window.location.href = '/'; 
         } else {
             const data = await response.json();
             alert(data.message || 'Błąd logowania');
@@ -210,7 +205,7 @@ async function logoutUser() {
 
         if (response.ok) {
             console.log('Wylogowano pomyślnie');
-            window.location.reload(); // Przeładowanie strony po wylogowaniu
+            window.location.reload(); 
         } else {
             console.log('Błąd podczas wylogowywania');
         }
@@ -237,7 +232,7 @@ async function saveParametersToDatabase() {
 
         if (response.ok) {
             console.log('Parametry zapisane.');
-            loadThrowHistory(); // Odświeża historię rzutów po zapisie
+            loadThrowHistory(); 
         } else {
             console.log('Błąd podczas zapisu.');
         }
@@ -246,7 +241,7 @@ async function saveParametersToDatabase() {
     }
 }
 
-// Dodaj event listener do przycisku
+
 document.getElementById('submit-button').addEventListener('click', saveParametersToDatabase);
 
 
@@ -263,7 +258,7 @@ async function checkLoginStatus() {
             document.getElementById('submit-button').title = '';
             loginButton.style.display = 'none';
             logoutButton.style.display = 'inline-block';
-            loadThrowHistory(); // Funkcja do ładowania historii rzutów
+            loadThrowHistory(); 
         } else {
             document.getElementById('submit-button').disabled = true;
             document.getElementById('submit-button').title = 'Aby zapisać, musisz być zalogowany';
@@ -292,7 +287,7 @@ async function loadThrowHistory() {
         document.getElementById('username').innerHTML = username;
 
         const historyContainer = document.getElementById('history-list');
-        historyContainer.innerHTML = ''; // Wyczyść bieżącą historię
+        historyContainer.innerHTML = ''; 
 
         const header = document.createElement('p');
         header.textContent = `Rekordy użytkownika: ${username}`;
@@ -301,7 +296,7 @@ async function loadThrowHistory() {
         throws.forEach(throwData => {
             const listItem = document.createElement('li');
 
-            // Tworzenie kontenera dla parametrów
+            
             const paramContainer = document.createElement('div');
             paramContainer.classList.add('parameters');
             paramContainer.innerHTML = `
@@ -314,7 +309,7 @@ async function loadThrowHistory() {
             const buttonContainer = document.createElement('div');
             buttonContainer.classList.add('button-container');
 
-            // Tworzenie przycisku Symuluj
+            
             const simulateButton = document.createElement('button');
             simulateButton.textContent = 'Symuluj';
             simulateButton.classList.add('simulate-button');
@@ -323,7 +318,7 @@ async function loadThrowHistory() {
 
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Usuń';
-            deleteButton.classList.add('simulate-button'); // Używamy tej samej klasy dla spójności stylu
+            deleteButton.classList.add('simulate-button'); 
             deleteButton.onclick = () => deleteThrow(throwData.id);
             buttonContainer.appendChild(deleteButton);
 
@@ -341,7 +336,7 @@ async function deleteThrow(throwId) {
 
         if (response.ok) {
             console.log('Rekord usunięty');
-            loadThrowHistory(); // Ponowne załadowanie historii po usunięciu rekordu
+            loadThrowHistory(); 
         } else {
             console.log('Błąd podczas usuwania rekordu');
         }
@@ -354,7 +349,7 @@ function simulateThrow(throwData) {
     document.getElementById('angle').value = throwData.angle;
     document.getElementById('velocity').value = throwData.velocity;
     document.getElementById('height').value = throwData.height;
-    // Aktualizacja wykresu
+
     calculateProjectileMotion()
     updateChart(throwData.velocity, throwData.angle * Math.PI / 180, throwData.height);
 }
@@ -372,7 +367,7 @@ function hideModal(modalId) {
     document.getElementById('modal-overlay').style.display = 'none';
 }
 
-// Przypisanie funkcji do przycisków i linków
+
 document.getElementById('login-button').addEventListener('click', () => showModal('login-section'));
 document.getElementById('register-link').addEventListener('click', () => showModal('register-section'));
 document.getElementById('modal-overlay').addEventListener('click', () => {
@@ -393,5 +388,5 @@ function validateAndSetInput(inputElement, maxValue, minvalue) {
         inputElement.value = minvalue;
     }
     
-    return inputElement.value; // Zwraca skorygowaną wartość
+    return inputElement.value; 
 }

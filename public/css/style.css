@@ -42,7 +42,7 @@ header #login-button:hover, header #back-button:hover,  header #logout-button:ho
 }
 
 #left, #right {
-    width: 300px; /* Zmniejszona szerokość */
+    width: 300px; 
     flex-shrink: 0;
 }
 
@@ -70,8 +70,8 @@ header #login-button:hover, header #back-button:hover,  header #logout-button:ho
 
 
 #history-list {
-    width: 100%; /* Upewnij się, że lista zajmuje całą szerokość kontenera */
-    padding: 0;  /* Usuń domyślne paddingi listy */
+    width: 100%; 
+    padding: 0;  
     height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
@@ -79,15 +79,15 @@ header #login-button:hover, header #back-button:hover,  header #logout-button:ho
 
 #history-list li {
     background-color: #f9f9f9;
-    border-bottom: 1px solid #ddd; /* Dodajemy dolną kreskę do każdego elementu */
+    border-bottom: 1px solid #ddd; 
     padding: 10px;
-    margin-bottom: 0; /* Usuwamy margines dolny */
+    margin-bottom: 0; 
     list-style-type: none;
-    width: 100%; /* Pełna szerokość dla każdego elementu listy */
+    width: 100%; 
 }
 
 #history-list li:last-child {
-    border-bottom: none; /* Usuwamy kreskę na końcu listy */
+    border-bottom: none; 
 }
 
 #history-list p{
@@ -102,8 +102,8 @@ header #login-button:hover, header #back-button:hover,  header #logout-button:ho
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    display: block; /* Przycisk jako blok */
-    margin-top: 10px; /* Margines na górze */
+    display: block; 
+    margin-top: 10px;
 }
 
 #history-list .simulate-button:hover {
@@ -116,16 +116,16 @@ header #login-button:hover, header #back-button:hover,  header #logout-button:ho
 
 #history-list .button-container {
     display: flex;
-    gap: 10px; /* Dodaje odstęp między przyciskami */
+    gap: 10px; 
 }
 
 #center {
-    flex-grow: 2; /* Większy "grow factor" dla #center */
-    padding: 20px 0; /* Padding tylko górny i dolny */
+    flex-grow: 2;
+    padding: 20px 0; 
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: calc(100% - 300px); /* Szerokość po odjęciu #left i #right */
+    width: calc(100% - 300px); 
 }
 
 
@@ -171,8 +171,8 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px; /* Ustaw wysokość według potrzeb */
-    width: 80%; /* Możesz ograniczyć szerokość, jeśli to konieczne */
+    height: 400px; 
+    width: 80%; 
 }
 
 #chart-container canvas {
@@ -232,11 +232,11 @@ a {
     margin-bottom: 5px;
 }
 
-#max-height, #flight-time {
+#max-height, #flight-time, #range {
     margin-top: 20px;
 }
 
-#max-height span, #flight-time span {
+#max-height span, #flight-time span, #range span {
     font-weight: bold;
 }
 
@@ -257,12 +257,12 @@ a {
 
 
 .form-section {
-    position: fixed; /* Fixed position */
+    position: fixed; 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: none; /* Ukryte domyślnie */
-    z-index: 1000; /* Upewnij się, że modal jest nad innymi elementami */
+    display: none; 
+    z-index: 1000; 
     background-color: white;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
