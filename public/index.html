@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symulator rzutu ukośnego</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1 style="display: inline-block; float: left;">Symulator rzutu ukośnego</h1>
+        <p style="display: inline-block;" id="username"></p>
+        <button id="login-button">Zaloguj się</button>
+        <button id="logout-button" style="display: none;">Wyloguj się</button>
+        <button id="back-button" style="display: none;">Powrót</button>
+    </header>    
+    <div id="content">
+        <div id="modal-overlay" class="overlay"></div>
+        <div id="left">
+            <aside>
+                <h3>Historia rzutów (dla zalogowanych użytkowników)</h3>
+                <ul id="history-list">
+                    <!-- Tutaj pojawią się wpisy historii -->
+                </ul>
+            </aside>
+        </div>
+        <div id="center">
+            
+                <div id="input-form">
+                    <div class="input-field">
+                        <label for="angle">Kąt rzutu (0-89°):</label>
+                        <input type="number" id="angle" placeholder="kąt wyrzutu" min="0" max="89" value="45">
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="velocity">Prędkość początkowa (m/s):</label>
+                        <input type="number" id="velocity" placeholder="prędkość początkowa" min="0" value="10">
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="height">Wysokość początkowa (m):</label>
+                        <input type="number" id="height" placeholder="wysokość początkowa" min="0" value="0">
+                    </div>
+        
+                    <button id="submit-button" title="Aby zapisać, musisz być zalogowany">Zapisz parametry</button>
+                </div>
+                <div id="chart-container">
+                    <!-- Miejsce na wykres -->
+                    <canvas id="trajectory-chart"></canvas>
+                </div>
+
+                <div id="max-height">Maksymalna wysokość: <span id="max-height-value"></span> m</div>
+                <div id="flight-time">Czas trwania lotu: <span id="flight-time-value"></span> s</div>
+
+            
+        </div>
+        <div id="right">
+            <aside id="info-panel">
+
+                <h3>Podstawowe informacje:</h3>
+                    <p>Rzut ukośny to typ ruchu, w którym ciało jest rzucone pod pewnym kątem do poziomu. Charakteryzuje się on paraboliczną trajektorią. Za pomocą równań ruchu dla składowych pionowych i poziomych możemy obliczyć np. jaka była maksymalna wysokość, którą osiągnął wyrzucony przedmiot.</p>
+                    <h4>Wzory:</h4>
+                    <ul>
+                        <li>Tor lotu: \( y = x \tan(\theta) - \frac{g}{2v^2\cos^2(\theta)}x^2 + h_0 \)</li>
+                        <li>Maksymalna wysokość: \( H = h_0 + \frac{v^2 \sin^2(\theta)}{2g} \)</li>
+                        <li>Czas lotu: \( t = \frac{v \sin(\theta) + \sqrt{(v \sin(\theta))^2 + 2gh_0}}{g} \)</li>                    </ul>
+                    <p>gdzie:</p>
+                    <ul>
+                        <li>\( v \) - prędkość początkowa</li>
+                        <li>\( \theta \) - kąt wyrzutu</li>
+                        <li>\( g \) - przyspieszenie ziemskie (ok. 9.81 m/s²)</li>
+                        <li>\( h_0 \) - wysokość początkowa</li>
+                        <li>\( x \) - pozioma odległość</li>
+                        <li>\( y \) - pionowa odległość</li>
+                    </ul>
+                    <a href="https://pl.wikipedia.org/wiki/Rzut_ukośny_(fizyka)" target="_blank"><button class="info-button">Więcej informacji</button></a>
+            </aside>
+        </div>
+    </div>
+
+
+    <!-- Sekcja logowania -->
+    <div id="login-section" class="form-section" style="display: none;">
+        <form id="login-form" class="form-style">
+            <h2>Logowanie</h2>
+            <input type="text" id="username-login" placeholder="Nazwa użytkownika">
+            <input type="password" id="password-login" placeholder="Hasło">
+            <button type="submit" id="login-submit">Zaloguj się</button>
+            <p>Nie masz konta? <span id="register-link">Zarejestruj się</span></p>
+        </form>
+    </div>
+
+
+    <!-- Sekcja rejestracji -->
+    <div id="register-section" class="form-section" style="display: none;">
+        <form id="register-form" class="form-style">
+            <h2>Rejestracja</h2>
+            <input type="text" id="username-register" placeholder="Nazwa użytkownika">
+            <input type="password" id="password-register" placeholder="Hasło">
+            <button type="submit" id="register-submit">Zarejestruj się</button>
+            <p>Masz już konto? <span id="login-link">Zaloguj się</span></p>
+        </form>
+    </div>
+    
+    <script src="js/frontapp.js"></script>
+</body>
+</html>

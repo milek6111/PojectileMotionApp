@@ -1,0 +1,290 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: #f3f3f3;
+    padding: 10px;
+    position: relative;
+}
+
+header h1 {
+    float: left;
+}
+
+header #login-button, header #back-button , header #logout-button{
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+header #login-button:hover, header #back-button:hover,  header #logout-button:hover{
+    background-color: #e1e1e1;
+    color: #333;
+    border-color: #aaa;
+}
+
+#content {
+    display: flex;
+    flex-grow: 1;
+}
+
+#left, #right {
+    width: 300px; /* Zmniejszona szerokość */
+    flex-shrink: 0;
+}
+
+#history-list h3 {
+    color: #333;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+#history-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+#history-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#history-list::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+#history-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+#history-list {
+    width: 100%; /* Upewnij się, że lista zajmuje całą szerokość kontenera */
+    padding: 0;  /* Usuń domyślne paddingi listy */
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#history-list li {
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd; /* Dodajemy dolną kreskę do każdego elementu */
+    padding: 10px;
+    margin-bottom: 0; /* Usuwamy margines dolny */
+    list-style-type: none;
+    width: 100%; /* Pełna szerokość dla każdego elementu listy */
+}
+
+#history-list li:last-child {
+    border-bottom: none; /* Usuwamy kreskę na końcu listy */
+}
+
+#history-list p{
+    position:initial;
+}
+
+#history-list .simulate-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block; /* Przycisk jako blok */
+    margin-top: 10px; /* Margines na górze */
+}
+
+#history-list .simulate-button:hover {
+    background-color: #45a049;
+}
+
+#history-list .parameters {
+    margin-bottom: 8px;
+}
+
+#history-list .button-container {
+    display: flex;
+    gap: 10px; /* Dodaje odstęp między przyciskami */
+}
+
+#center {
+    flex-grow: 2; /* Większy "grow factor" dla #center */
+    padding: 20px 0; /* Padding tylko górny i dolny */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% - 300px); /* Szerokość po odjęciu #left i #right */
+}
+
+
+aside {
+    background-color: #e9ecef;
+    padding: 20px;
+    box-shadow: 2px 0px 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    height: 100%;
+}
+
+aside h3 {
+    margin-top: 0;
+    font-size: medium;
+}
+
+#input-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#input-form input, #input-form button {
+    margin: 5px;
+    padding: 8px;
+    width: 200px;
+}
+
+.info-button {
+    position: relative;
+    display: block; 
+    margin: 5px auto;
+    padding: 8px;
+    width: 60%;
+}
+
+a {
+    text-decoration: none;
+}
+
+#chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px; /* Ustaw wysokość według potrzeb */
+    width: 80%; /* Możesz ograniczyć szerokość, jeśli to konieczne */
+}
+
+#chart-container canvas {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+#info-panel {
+    background-color: #e9ecef;
+    box-shadow: -2px 0px 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    height: 100%;
+}
+
+#info-panel h3 {
+    margin-top: 0;
+}
+
+
+.form-style {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-style input {
+    margin: 10px 0;
+    padding: 8px;
+    width: 200px;
+}
+
+.form-style button {
+    padding: 10px 15px;
+    margin-top: 10px;
+}
+
+#login-link, #register-link {
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+#login-link:hover, #register-link:hover {
+    color: #0056b3;
+}
+
+#info-panel ul {
+    padding-left: 20px;
+}
+
+#info-panel li {
+    margin-bottom: 5px;
+}
+
+#max-height, #flight-time {
+    margin-top: 20px;
+}
+
+#max-height span, #flight-time span {
+    font-weight: bold;
+}
+
+.input-field {
+    margin-bottom: 10px;
+}
+
+.input-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-field input {
+    width: 200px;
+    padding: 8px;
+}
+
+
+.form-section {
+    position: fixed; /* Fixed position */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Ukryte domyślnie */
+    z-index: 1000; /* Upewnij się, że modal jest nad innymi elementami */
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    border-radius: 5px;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 999;
+}
+
+header #username {
+    font-size: x-large;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
